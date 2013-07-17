@@ -1,6 +1,29 @@
+---------------------------------------------------------------------------
 -- lists
 ghci> let lostNumbers = [4,8,15,16,23,42]
 
+---------------------------------------------------------------------------
+-- ranges
+ghci>[1..10]
+[1,2,3,4,5,6,7,8,9,10]
+ghci>['a'..'m']
+"abcdefghijklm"
+
+-- specify the first two values, to control the step
+ghci>[0,3..20]
+[0,3,6,9,12,15,18]
+
+-- for decreasing values, need to give step
+ghci>[20..1]
+[]
+ghci>[20,19..1]
+[20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]
+
+-- Use 'take' with infinite ranges:
+ghci>take 20 [2,4..]
+[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40]
+
+---------------------------------------------------------------------------
 -- concatenation - use ++ to join lists
 -- this is slow if used repeatedly on very long lists,
 -- as Haskell has to walk through the entire first list
@@ -19,6 +42,7 @@ ghci>[42..] !! 0 -- 42
 ghci> [3,2,1] > [2,1,0]
 True
 
+---------------------------------------------------------------------------
 -- List functions
 
 -- head: get first element
@@ -76,4 +100,14 @@ False
 ghci>42 `elem` [0..5]
 False
 
--- next: Ranges
+-- cycle: replicate elements infinitely
+ghci>take 12 ( cycle [2,4,6] )
+[2,4,6,2,4,6,2,4,6,2,4,6]
+
+-- repeat: produce an infinite list of a single element
+ghci>take 12 (repeat 42)
+[42,42,42,42,42,42,42,42,42,42,42,42]
+
+-- replicate: easier way to create a list from a single item:
+ghci>replicate 12 42
+[42,42,42,42,42,42,42,42,42,42,42,42]
